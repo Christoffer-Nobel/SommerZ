@@ -19,10 +19,5 @@
 
 if(isset($_POST['logout'])){
     session_destroy();
-    header('location: index.php');
-}
-if(isset($_POST['nav'])){
-    include_once("pages/" . $_POST['nav']);
-}else{
-    echo "Du er logget ind som " . $_SESSION['employee']['fornavn'] . " " . $_SESSION['employee']['efternavn'];
+    header('Refresh:0');
 }

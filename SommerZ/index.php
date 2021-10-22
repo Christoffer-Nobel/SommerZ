@@ -6,7 +6,13 @@ connect();
 include("header.php");
 
 if(isset($_SESSION['employee'])){
+    echo "Du er logget ind som " . $_SESSION['employee']['fornavn'] . " " . $_SESSION['employee']['efternavn'];
     include('nav.php');
+    if(isset($_POST['nav'])){
+        include("pages/" . $_POST['nav']);
+    }else{
+        include("pages/mainpage.php");
+    }
 }else{
     ?>
     <form method="post">
