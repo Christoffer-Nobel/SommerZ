@@ -1,5 +1,5 @@
 
-    <a href="pages/newPost.php" type="submit" name="newPost" value="newPost.php">Lav et nyt opslag</a>
+    <a href="pages/newPost.php">Lav et nyt opslag</a>
 
     <?php
     $opslag = getPosts();

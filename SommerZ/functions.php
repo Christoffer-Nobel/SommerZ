@@ -59,6 +59,52 @@ function getPosts() {
   return $nav;
 }
 
+function getOrderId() {
+  global $conn;
+
+  $sql = 'SELECT MAX(bestillingsliste_id) FROM bestillinger GROUP BY bestillingsliste_id desc ';
+  $result = mysqli_query($conn, $sql);
+  $nav = [];
+
+  if(mysqli_num_rows($result) > 0) {
+    while($row = mysqli_fetch_assoc($result)) {
+      $nav[] = $row;
+      $orderId = (int) $nav[0]['MAX(bestillingsliste_id)'];
+    }
+  }
+  return $orderId;
+}
+
+function getRecentOrder($i) {
+  global $conn;
+
+  $sql = 'SELECT * FROM bestillinger WHERE bestillingsliste_id = ' . "$i" . ' ';
+  $result = mysqli_query($conn, $sql);
+  $nav = [];
+
+  if(mysqli_num_rows($result) > 0) {
+    while($row = mysqli_fetch_assoc($result)) {
+      $nav[] = $row;
+    }
+  }
+  return $nav;
+}
+
+function getOrderStatus($i){
+  global $conn;
+
+  $sql = 'SELECT lagerstatus FROM bestillinger WHERE bestillings_id =' . "$i" . '';
+  $result = mysqli_query($conn, $sql);
+  $nav = [];
+
+  if(mysqli_num_rows($result) > 0) {
+    while($row = mysqli_fetch_assoc($result)) {
+      $nav[] = $row;
+      $orderStatus = (int) $nav[0]['lagerstatus'];
+    }
+  }
+  return $orderStatus;
+}
 function debug($data) {
   echo '<pre>';
   print_r($data);
